@@ -48,12 +48,24 @@ public class AppCricket {
 	int goalPodium = 1;
 	
 	Cricket[] crickets = new Cricket[CRICKETNUMBER];
+	CricketTeam[] teams = new CricketTeam[(CRICKETNUMBER/3) + 1];
 	
 	//NEW IMPLEMENTATION
 	ArrayList<Cricket> podium = new ArrayList<>();
 	
+	//CREATE THE CRICKET TEAMS
+	for (int i = 0; i < teams.length; i++) {
+		teams[i] = new CricketTeam(i);
+	}
+	
+	//CREATE THE CRICKETS AND PUT EVERY ONE IN A TEAM
 	for (int i = 0; i < crickets.length; i++) {
-		crickets[i] = new Cricket(i, GOAL, podium, semaphore);
+		crickets[i] = new Cricket(i, GOAL, podium, semaphore, teams[i/3]);
+		System.out.println("Cricket " + i + " joined the Team " + teams[i/3].id + " [" + teams[i/3].teamName + "]");
+	}
+	
+	//START EVERY CRICKET THREAD
+	for (int i = 0; i < crickets.length; i++) {
 		crickets[i].start();
 		try { Thread.sleep (1); } catch (InterruptedException ex) {}
 	}
@@ -73,6 +85,7 @@ public class AppCricket {
 		System.out.print((i + 1) + "st Place: Cricket " + podium.get(i).id + " [TOTAL JUMPS:" + podium.get(i).jumpNumber + 
 				" / DISTANCE: " + podium.get(i).totalDist +"cm]\n");
 	}
+	
 	
 	}
 }
