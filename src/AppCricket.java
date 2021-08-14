@@ -40,13 +40,6 @@ public class AppCricket {
 		e1.printStackTrace();
 	}
 	
-	int add = 0;
-	Cricket winner;
-	boolean endRun = false;
-	
-	int[] winnersPodium = new int[CRICKETNUMBER + 1];
-	int goalPodium = 1;
-	
 	Cricket[] crickets = new Cricket[CRICKETNUMBER];
 	CricketTeam[] teams = new CricketTeam[(CRICKETNUMBER/3) + 1];
 	
