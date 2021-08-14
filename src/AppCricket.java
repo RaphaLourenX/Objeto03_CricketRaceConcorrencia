@@ -3,7 +3,6 @@ import java.io.*;
 import java.util.Collections;
 
 public class AppCricket {
-	public static int CRICKETTEAMS;
 	public static int CRICKETNUMBER;
 	public static int GOAL;
 	public static TitleScreen titlescreen;
@@ -40,6 +39,8 @@ public class AppCricket {
 	}
 	
 	int add = 0;
+	int team = 1;
+	int teamcount = 0;
 	Cricket winner;
 	boolean endRun = false;
 	
@@ -53,6 +54,8 @@ public class AppCricket {
 	
 	for (int i = 0; i < crickets.length; i++) {
 		crickets[i] = new Cricket(i, GOAL, podium);
+		teamcount++; 
+		if (teamcount >= 2) {teamcount = 0; team++;}
 		crickets[i].start();
 	}
 	

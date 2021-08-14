@@ -6,12 +6,15 @@ public class Cricket extends Thread implements Comparable{
 	public int id;
 	private int goal;
 	private ArrayList<Cricket> podium;
+	private int team;
+	
 	
 	public Cricket(int id, int goal, ArrayList<Cricket> podium) 
 	{
 		this.id = id;
 		this.goal = goal;
 		this.podium = podium;
+		this.team = team;
 		System.out.println("Cricket" + id + " initialized.");
 	}
 	
@@ -37,7 +40,6 @@ public class Cricket extends Thread implements Comparable{
 	@Override
 	public void run() 
 	{
-		
 		System.out.println("\nCricket" + id+ " is running.");
 		
 		while(totalDist < goal) 
