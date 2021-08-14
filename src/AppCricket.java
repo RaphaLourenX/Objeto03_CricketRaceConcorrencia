@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.io.*;
 import java.util.Collections;
+import java.util.concurrent.Semaphore;
 
 public class AppCricket {
 	public static int CRICKETNUMBER;
 	public static int GOAL;
 	public static TitleScreen titlescreen;
+	public static  Semaphore semaphore = new Semaphore(1);
 	
 	public static void main(String[] args) {
 		
@@ -39,8 +41,7 @@ public class AppCricket {
 	}
 	
 	int add = 0;
-	int team = 1;
-	int teamcount = 0;
+	
 	Cricket winner;
 	boolean endRun = false;
 	
@@ -53,9 +54,7 @@ public class AppCricket {
 	ArrayList<Cricket> podium = new ArrayList<>();
 	
 	for (int i = 0; i < crickets.length; i++) {
-		crickets[i] = new Cricket(i, GOAL, podium);
-		teamcount++; 
-		if (teamcount >= 2) {teamcount = 0; team++;}
+		crickets[i] = new Cricket(i, GOAL, podium, semaphore);
 		crickets[i].start();
 	}
 	

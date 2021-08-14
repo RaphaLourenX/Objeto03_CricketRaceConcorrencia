@@ -1,21 +1,21 @@
 import java.lang.Thread;
 import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
 
 public class Cricket extends Thread implements Comparable{
 	// [ATRIBUTOS]
 	public int id;
 	private int goal;
 	private ArrayList<Cricket> podium;
-	private int team;
+	private static Semaphore semaforo;
 	
 	
-	public Cricket(int id, int goal, ArrayList<Cricket> podium) 
+	public Cricket(int id, int goal, ArrayList<Cricket> podium, Semaphore semaforo) 
 	{
 		this.id = id;
 		this.goal = goal;
 		this.podium = podium;
-		this.team = team;
-		System.out.println("Cricket" + id + " initialized.");
+		this.semaforo = semaforo;
 	}
 	
 	public int jumpNumber; //Total de Pulos que o Grilo deu
@@ -31,26 +31,59 @@ public class Cricket extends Thread implements Comparable{
 		this.jumpDist = randomJump();
 		this.totalDist += this.jumpDist;
 		System.out.println("   [ " + this.currentThread().getName() + " ]\n" +
-				"Cricket " + this.id + " jumped " + this.jumpDist + "cm. \n"
+				  "Cricket " + this.id + " jumped " + this.jumpDist + "cm. \n"
 				+ "Cricket " + this.id + " total distance: " + this.totalDist+ "cm.\n"
 				+ "Cricket " + this.id + " jumped " + this.jumpNumber + " times. \n");
 		
 	}
 	
-	@Override
-	public void run() 
-	{
-		System.out.println("\nCricket" + id+ " is running.");
-		
-		while(totalDist < goal) 
-		{
-			doJump();
-		}
-		System.out.println("\n == Cricket" + id + " Completed the race with " + jumpNumber + " jumps. ==\n");
-		podium.add(this);
+	private void processor() {
+		//NON CRITICAL REGION
+	    try {
+	    	//CRITICAL REGION
+	        semaforo.acquire();
+	        doJump();
+	        semaforo.release();
+	    } catch (InterruptedException e) {
+	        e.printStackTrace();
+	    }    
 	}
-
-
+	
+    private void waitFor() {
+    	//NON CRITICAL REGION
+        try {
+        	//CRITICAL REGION
+            Thread.sleep(100 + id);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    
+	public void victoryCheck() {
+		//NON CRITICAL REGION
+	        try {
+	        	//CRITICAL REGION
+	            semaforo.acquire();
+	            if (totalDist > goal) {
+		    		System.out.println("\n == Cricket" + id + " Completed the race with " + jumpNumber + " jumps. ==\n");
+		    		podium.add(this);
+	            }
+	            semaforo.release();
+	        }catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	}
+	
+	@Override
+	public void run() {
+		 while(totalDist < goal) {
+			processor();
+			victoryCheck();
+			waitFor();
+		}
+	}
+	
+	
 	@Override
 	public int compareTo(Object c) {
 		// TODO Auto-generated method stub
