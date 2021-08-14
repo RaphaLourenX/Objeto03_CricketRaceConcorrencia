@@ -64,7 +64,7 @@ public class Cricket extends Thread implements Comparable{
 	        try {
 	        	//CRITICAL REGION
 	            semaforo.acquire();
-	            if (totalDist > goal) {
+	            if (totalDist >= goal) {
 		    		System.out.println("\n == Cricket" + id + " Completed the race with " + jumpNumber + " jumps. ==\n");
 		    		podium.add(this);
 	            }
