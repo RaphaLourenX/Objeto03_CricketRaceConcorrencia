@@ -7,15 +7,15 @@ public class Cricket extends Thread implements Comparable{
 	public int id;
 	private int goal;
 	private ArrayList<Cricket> podium;
-	private static Semaphore semaforo;
+	private static Semaphore semaphore;
 	
 	
-	public Cricket(int id, int goal, ArrayList<Cricket> podium, Semaphore semaforo) 
+	public Cricket(int id, int goal, ArrayList<Cricket> podium, Semaphore semaphore) 
 	{
 		this.id = id;
 		this.goal = goal;
 		this.podium = podium;
-		this.semaforo = semaforo;
+		this.semaphore = semaphore;
 	}
 	
 	public int jumpNumber; //Total de Pulos que o Grilo deu
@@ -41,9 +41,9 @@ public class Cricket extends Thread implements Comparable{
 		//NON CRITICAL REGION
 	    try {
 	    	//CRITICAL REGION
-	        semaforo.acquire();
+	        semaphore.acquire();
 	        doJump();
-	        semaforo.release();
+	        semaphore.release();
 	    } catch (InterruptedException e) {
 	        e.printStackTrace();
 	    }    
@@ -63,12 +63,12 @@ public class Cricket extends Thread implements Comparable{
 		//NON CRITICAL REGION
 	        try {
 	        	//CRITICAL REGION
-	            semaforo.acquire();
+	            semaphore.acquire();
 	            if (totalDist >= goal) {
 		    		System.out.println("\n == Cricket" + id + " Completed the race with " + jumpNumber + " jumps. ==\n");
 		    		podium.add(this);
 	            }
-	            semaforo.release();
+	            semaphore.release();
 	        }catch (Exception e) {
 	            e.printStackTrace();
 	        }

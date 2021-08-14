@@ -41,7 +41,6 @@ public class AppCricket {
 	}
 	
 	int add = 0;
-	
 	Cricket winner;
 	boolean endRun = false;
 	
@@ -56,6 +55,7 @@ public class AppCricket {
 	for (int i = 0; i < crickets.length; i++) {
 		crickets[i] = new Cricket(i, GOAL, podium, semaphore);
 		crickets[i].start();
+		try { Thread.sleep (1); } catch (InterruptedException ex) {}
 	}
 	
 	for (int i = 0; i < crickets.length; i++) {
