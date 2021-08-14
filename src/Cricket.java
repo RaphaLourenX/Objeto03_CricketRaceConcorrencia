@@ -2,7 +2,7 @@ import java.lang.Thread;
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 
-public class Cricket extends Thread implements Comparable{
+public class Cricket extends Thread {
 	// [ATRIBUTOS]
 	public int id;
 	private int goal;
@@ -81,14 +81,6 @@ public class Cricket extends Thread implements Comparable{
 			victoryCheck();
 			waitFor();
 		}
-	}
-	
-	
-	@Override
-	public int compareTo(Object c) {
-		// TODO Auto-generated method stub
-		int compareJumps = ((Cricket) c).jumpNumber;
-		return this.jumpNumber - compareJumps;
 	}
 
 }

@@ -66,8 +66,7 @@ public class AppCricket {
 			e.printStackTrace();
 		}
 	}
-	
-	Collections.sort(podium);
+
 	
 	for(int i = 0; i < podium.size(); i++) 
 	{
