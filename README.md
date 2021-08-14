@@ -1,2 +1,2 @@
-# CricketRun_Objeto02
-Repositório destinado ao exercício Objeto 02 para a disciplina de Jogos para Consoles
+# CricketRun_Objeto03
+Repositório destinado ao exercício Objeto 03 para a disciplina de Jogos para Consoles
