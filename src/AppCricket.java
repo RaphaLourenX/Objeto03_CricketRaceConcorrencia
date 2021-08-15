@@ -44,7 +44,9 @@ public class AppCricket {
 	CricketTeam[] teams = new CricketTeam[(CRICKETNUMBER/3) + 1];
 	
 	//NEW IMPLEMENTATION
-	//ArrayList<Cricket> podium = new ArrayList<>();
+	ArrayList<Cricket> podium = new ArrayList<Cricket>();
+	int winner;
+	int winnerTeam;
 	
 	//CREATE THE CRICKET TEAMS
 	for (int i = 0; i < teams.length; i++) {
@@ -53,7 +55,7 @@ public class AppCricket {
 	
 	//CREATE THE CRICKETS AND PUT EVERY ONE IN A TEAM
 	for (int i = 0; i < crickets.length; i++) {
-		crickets[i] = new Cricket(i, GOAL, semaphore, teams[i/3]);
+		crickets[i] = new Cricket(i, GOAL, semaphore, teams[i/3], podium);
 		System.out.println("Cricket " + i + " joined the Team " + teams[i/3].id + " [" + teams[i/3].teamName + "]");
 	}
 	
@@ -74,8 +76,13 @@ public class AppCricket {
 	
 	for(int t = 0; t < teams.length; t++) 
 	{
-		System.out.println("The team" + teams[t].id + " jumped " + teams[t].teamJumps + " times with a total distance of " + teams[t].teamDistance);
+		System.out.println("The team" + teams[t].id + " jumped " + teams[t].teamJumps + " times with a total distance of " + teams[t].teamDistance + "\n");
 	}
+	
+	winner = podium.get(0).id;
+	winnerTeam = podium.get(0).getTeam();
+	
+	System.out.println("The winner team is the team" + winnerTeam + " with the cricket" + winner + " being the first to cross the goal.");
 	
 	}
 }
