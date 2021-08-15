@@ -6,16 +6,14 @@ public class Cricket extends Thread {
 	// [ATRIBUTOS]
 	public int id;
 	private int goal;
-	private ArrayList<Cricket> podium;
 	private static Semaphore semaphore;
 	private CricketTeam team;
 	
 	
-	public Cricket(int id, int goal, ArrayList<Cricket> podium, Semaphore semaphore, CricketTeam team) 
+	public Cricket(int id, int goal, Semaphore semaphore, CricketTeam team) 
 	{
 		this.id = id;
 		this.goal = goal;
-		this.podium = podium;
 		this.semaphore = semaphore;
 		this.team = team;
 	}
@@ -71,7 +69,6 @@ public class Cricket extends Thread {
 	            semaphore.acquire();
 	            if (totalDist >= goal) {
 		    		System.out.println("\n == Cricket" + id + " Completed the race with " + jumpNumber + " jumps. ==\n");
-		    		podium.add(this);
 		    		semaphore.release();
 	            }
 	            semaphore.release();
