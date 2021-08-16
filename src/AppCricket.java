@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.io.*;
-import java.util.Collections;
 import java.util.concurrent.Semaphore;
 
 public class AppCricket {
