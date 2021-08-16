@@ -76,13 +76,13 @@ public class AppCricket {
 	
 	for(int t = 0; t < teams.length; t++) 
 	{
-		System.out.println("The team" + teams[t].id + " jumped " + teams[t].teamJumps + " times with a total distance of " + teams[t].teamDistance + "\n");
+		System.out.println("The Team " + teams[t].id + " jumped " + teams[t].teamJumps + " times with a total distance of " + teams[t].teamDistance + "\n");
 	}
 	
 	winner = podium.get(0).id;
 	winnerTeam = podium.get(0).getTeam();
 	
-	System.out.println("The winner team is the team" + winnerTeam + " with the cricket" + winner + " being the first to cross the goal.");
+	System.out.println("The winner team is the Team " + winnerTeam + " with the cricket" + winner + " being the first to cross the goal.");
 	
 	}
 }
