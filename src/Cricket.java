@@ -10,15 +10,17 @@ public class Cricket extends Thread {
 	private CricketTeam team;
 	public int getTeam(){return this.team.id;}
 	ArrayList<Cricket> podium;
+	private boolean israndom;
 	
 	
-	public Cricket(int id, int goal, Semaphore semaphore, CricketTeam team, ArrayList<Cricket> podium) 
+	public Cricket(int id, int goal, Semaphore semaphore, CricketTeam team, ArrayList<Cricket> podium, boolean israndom) 
 	{
 		this.id = id;
 		this.goal = goal;
 		this.semaphore = semaphore;
 		this.team = team;
 		this.podium = podium;
+		this.israndom = israndom;
 	}
 	
 	public int jumpNumber; //Total de Pulos que o Grilo deu
@@ -59,7 +61,15 @@ public class Cricket extends Thread {
     	//NON CRITICAL REGION
         try {
         	//CRITICAL REGION
-            Thread.sleep(100 + id);
+        	if (israndom == true) {
+        		
+        		Thread.sleep((int) (Math.random()* 100.0f) + 100);
+        	}
+        	else {
+        		
+        		Thread.sleep(100 + id);
+        	}
+            
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

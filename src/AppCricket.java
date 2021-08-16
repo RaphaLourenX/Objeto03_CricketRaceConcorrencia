@@ -8,6 +8,7 @@ public class AppCricket {
 	public static int GOAL;
 	public static TitleScreen titlescreen;
 	public static  Semaphore semaphore = new Semaphore(1);
+	public static boolean APPRANDOM = true;
 	
 	public static void main(String[] args) {
 		
@@ -55,7 +56,7 @@ public class AppCricket {
 	
 	//CREATE THE CRICKETS AND PUT EVERY ONE IN A TEAM
 	for (int i = 0; i < crickets.length; i++) {
-		crickets[i] = new Cricket(i, GOAL, semaphore, teams[i/3], podium);
+		crickets[i] = new Cricket(i, GOAL, semaphore, teams[i/3], podium, APPRANDOM);
 		System.out.println("Cricket " + i + " joined the Team " + teams[i/3].id + " [" + teams[i/3].teamName + "]");
 	}
 	

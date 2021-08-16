@@ -27,7 +27,7 @@ public class TitleScreen {
 			+ "    /\\____) |___) (___| )   ( || (___) || (____/\\| )   ( |   | |   | (___) || ) \\ \\__\r\n"
 			+ "    \\_______)\\_______/|/     \\|(_______)(_______/|/     \\|   )_(   (_______)|/   \\__/";
 	
-	public String version = "0.2";
+	public String version = "0.3";
 	public String author = "Camille Klecz, Izack Igor, Raphael Lourenço";
 	
 	
